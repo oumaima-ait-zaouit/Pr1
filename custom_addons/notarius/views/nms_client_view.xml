@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="nms_client_action" model="ir.actions.act_window">
+            <field name="name">Client</field>
+            <field name="res_model">nms.client</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="nms_client_tree"></field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Définir un nouveau client !</p>
+            </field>
+        </record>
+
+        <record id="nms_client_form" model="ir.ui.view">
+            <field name="name">nms.client.form</field>
+            <field name="model">nms.client</field>
+            <field name="arch" type="xml">
+                <form string="Client">
+                    <sheet>
+                        <div class="o_row">
+                            <div class="o_col" style="margin-right: 20px; display: flex; flex-direction: column; align-items: flex-start;">
+                                <group>
+                                    <field name="client_name" />
+                                    <field name="client_address" />
+                                    <field name="client_email" />
+                                    <field name="client_phone_number" />
+                                    <field name="client_type" />
+                                </group>
+                            </div>
+                            <div class="o_col" style="margin-right: 10px; display: flex; flex-direction: column; align-items: flex-start;">
+                                <group>
+                                    <field name="client_date_of_birth" />
+
+                                    <field name="client_registration" />
+                                </group>
+                            </div>
+                            <div class="o_col" style="margin-left: 10px; text-align: right">
+                                <div>
+                                    <field name="client_image" widget="image"
+                                        style="max-width: 100px; max-height: 100px;" />
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </sheet>
+
+                    <!-- Chatter integration -->
+                    <!-- <div class="oe_chatter">
+                        <field name="message_follower_ids" />
+                        <field name="message_ids" />
+                    </div> -->
+
+                </form>
+            </field>
+        </record>
+        <record id="nms_client_tree" model="ir.ui.view">
+            <field name="name">nms.client.tree</field>
+            <field name="model">nms.client</field>
+            <field name="arch" type="xml">
+                <tree string="Clients">
+
+                    <!-- <field name="client_name" /> -->
+                    <field name="client_email" />
+                    <field name="client_phone_number" />
+                    <field name="client_registration" />
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="nms_client_kanban" model="ir.ui.view">
+            <field name="name">nms.client.kanban</field>
+            <field name="model">nms.client</field>
+            <field name="arch" type="xml">
+                <kanban>
+
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_content">
+                                <div class="oe_kanban_primary">
+                                    <div class="oe_kanban_record">
+                                        <div class="oe_kanban_quick_create">
+                                            <h5>
+                                                <field name="client_name" />
+                                            </h5>
+                                        </div>
+                                        <div class="kanban_image">
+                                            <field name="client_image" />
+                                        </div>
+                                        <div class="kanban_email">
+                                            <field name="client_email" />
+                                        </div>
+                                        <div class="kanban_phone_number">
+                                            <field name="client_phone_number" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

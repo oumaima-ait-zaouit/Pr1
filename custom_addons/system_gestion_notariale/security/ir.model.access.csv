@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+system_gestion_notariale.access_res_partner,access_res_partner,system_gestion_notariale.model_res_partner,base.group_user,1,1,1,1
+system_gestion_notariale.access_system_gestion_notariale.model_sgn_nationality,access_system_gestion_notariale.model_sgn_nationality,system_gestion_notariale.model_sgn_nationality,base.group_user,1,1,1,1
+
