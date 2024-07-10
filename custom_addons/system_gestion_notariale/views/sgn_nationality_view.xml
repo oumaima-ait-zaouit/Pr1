@@ -55,9 +55,23 @@
             </field>
         </record> -->
 
-        <record id="sgn_client_action" model="ir.actions.act_window">
+
+        <record id="hms_patient_tree" model="ir.ui.view">
+            <field name="name">sgn.nationality.tree</field>
+            <field name="model">sgn.nationality</field>
+            <field name="arch" type="xml">
+                <tree string="Patients">
+                    <field name="sequence" widget="handle" />
+                    <field name="name" />
+                    <field name="can_buy" />
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="sgn_nationality_action" model="ir.actions.act_window">
             <field name="name">Nationalité</field>
-            <field name="res_model">system_gestion_notariale.nationality</field>
+            <field name="res_model">sgn.nationality</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">Définir un nouveau nationalité</p>
