@@ -60,6 +60,37 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
+                
+
+                <xpath expr="//field[@name='vat']" position="after">
+                    <field name="nom_partenaire"/>
+                </xpath>
+
+
+                <!-- <xpath expr="//field[@name='nom_partenaire']" position="after">
+                    <modifiers>
+                        <modifier invisible="1" name="invisible" eval="etat_familiale != 'epoux'"/>
+                    </modifiers>
+                </xpath> -->
+               
+                <xpath expr="//field[@name='vat']" position="after">
+                    <field name="profession"/>
+                </xpath>
+
+                <xpath expr="//field[@name='vat']" position="after">
+                    <field name="etat_familiale"/>
+                </xpath>
+
+                
+
+                <xpath expr="//field[@name='vat']" position="after">
+                    <field name="date_naissance"/>
+                </xpath>
+
+                <xpath expr="//field[@name='vat']" position="after">
+                    <field name="lieu_naissance"/>
+                </xpath>
+
                 <xpath expr="//field[@name='vat']" position="after">
                     <field name="nationnality_ids" widget="many2many_tags" placeholder="e.g. Moroccan"  />
                 </xpath>

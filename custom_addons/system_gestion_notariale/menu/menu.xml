@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <menuitem
+            id="sgn_menu"
+            name="System gestion notariale"
+            sequence="1"/>
+        
+        <menuitem  id="sgn_client" name="Client"  parent="sgn_menu"  action="sgn_client_action" sequence="2" />
+        <menuitem  id="sgn_bienimmobilier" name="Bien Immobilier"  parent="sgn_menu" sequence="3" />
+        <menuitem  id="sgn_residence" name="Residence"  parent="sgn_bienimmobilier"  action="sgn_residence_action" sequence="3" />
+
+        <menuitem 
+            id="sgn_configuration_menu"
+            name="Configuration"
+            parent="sgn_menu"
+        />
+        <menuitem  id="sgn_nationality" name="Nationalité"  parent="sgn_configuration_menu"  action="sgn_nationality_action" />
+        
+    </data>
+</odoo>
