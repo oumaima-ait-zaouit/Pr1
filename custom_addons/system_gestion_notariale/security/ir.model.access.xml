@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="module_categorie_notaire" model="ir.module.category">
+            <field name="name">Gestion Notariale</field>
+            <field name="description">Gerer vos processus notarial</field>
+        </record>
+    
+        <!-- Admin Group -->
+        <record id="sgn_group_admin" model="res.groups">
+            <field name="name">Administrateur</field>
+            <field name="category_id" ref="system_gestion_notariale.module_categorie_notaire"/>
+        </record>
+    
+        <!-- Assistant Group -->
+        <record id="sgn_group_assistant" model="res.groups">
+            <field name="name">Assistant</field>
+            <field name="category_id" ref="system_gestion_notariale.module_categorie_notaire"/>
+        </record>
+    
+    </data>
+    
+    
+
+</odoo>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="releve_affaire_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+
+                        <!-- <div class="row">
+                            <div class="col-12">
+                                <h2>Company Information</h2>
+                                <p>
+                                    <strong>Company Name:</strong> <t t-esc="doc.company_id.name"/><br/>
+                                    <strong>Address:</strong> <t t-esc="doc.company_id.partner_id.street"/>, 
+                                    <t t-esc="doc.company_id.partner_id.city"/>,
+                                    <t t-esc="doc.company_id.partner_id.zip"/>,
+                                    <t t-esc="doc.company_id.partner_id.country_id.name"/><br/>
+                                    <strong>Phone:</strong> <t t-esc="doc.company_id.phone"/><br/>
+                                    <strong>Email:</strong> <t t-esc="doc.company_id.email"/><br/>
+                                    <strong>Website:</strong> <t t-esc="doc.company_id.website"/>
+                                </p>
+                            </div>
+                        </div> -->
+    
+                        <h2>Relevé d'Affaire</h2>
+                        <h5>Numéro du Dossier : <t t-esc="doc.name" /></h5>
+    
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                            <tr style="font-size: 18px; margin-bottom: 15px;">
+                                <td style="width: 30%; font-weight: bold; padding: 25px;">Prix de Vente</td>
+                                <td style="width: 20%; text-align: center; padding: 25px;"></td>
+                                <td style="width: 50%; text-align: right; padding: 25px;"><t t-esc="doc.prix_vente" /> dhs</td>
+                            </tr>
+                            <tr style="font-size: 18px; margin-bottom: 15px;">
+                                <td style="width: 30%; font-weight: bold; padding: 25px;">Conservation fonciere</td>
+                                <td style="width: 20%; text-align: center; padding: 25px;"><t t-esc="doc.pourcentage_concervation_fonciere" />%</td>
+                                <td style="width: 50%; text-align: right; padding: 25px;"><t t-esc="doc.montant_concervation_fonciere" /> dhs</td>
+                            </tr>
+            
+                            <tr style="font-size: 18px; margin-bottom: 15px;">
+                                <td style="width: 30%; font-weight: bold; padding: 25px;">Montant Registration</td>
+                                <td style="width: 20%; text-align: center; padding: 25px;"><t t-esc="doc.pourcentage_registration" />%</td>
+                                <td style="width: 50%; text-align: right; padding: 25px;"><t t-esc="doc.montant_registration" /> dhs</td>
+                            </tr>
+                            <tr style="font-size: 18px; margin-bottom: 15px;">
+                                <td style="width: 30%; font-weight: bold; padding: 25px;">TPI</td>
+                                <td style="width: 20%; text-align: center; padding: 25px;"><t t-esc="doc.tpi_pourcentage" />%</td>
+                                <td style="width: 50%; text-align: right; padding: 25px;"><t t-esc="doc.montant_a_payer_tpi" /> dhs</td>
+                            </tr>
+                            <tr style="font-size: 18px; margin-bottom: 15px;">
+                                <td style="width: 30%; font-weight: bold; padding: 25px;">Frais de dossier</td>
+                                <td style="width: 20%; text-align: center; padding: 25px;"></td>
+                                <td style="width: 50%; text-align: right; padding: 25px;"><t t-esc="doc.fraix_dossier" /> dhs</td>
+                            </tr>
+                            <tr style="font-size: 18px; margin-bottom: 15px;">
+                                <td style="width: 30%; font-weight: bold; padding: 25px;">Honoraires Notariale</td>
+                                <td style="width: 20%; text-align: center; padding: 25px;"><t t-esc="doc.pourcentage_honoraire_notariale" />%</td>
+                                <td style="width: 50%; text-align: right; padding: 25px;"><t t-esc="doc.honoraires_notariale" /> dhs</td>
+                            </tr>
+                            <tr style="font-size: 18px; margin-bottom: 15px;">
+                                <td style="width: 30%; font-weight: bold; padding: 25px;">TVA (Honoraires)</td>
+                                <td style="width: 20%; text-align: center; padding: 25px;"><t t-esc="doc.pourcentage_tva" />%</td>
+                                <td style="width: 50%; text-align: right; padding: 25px;"><t t-esc="doc.montant_tva" /> dhs</td>
+                            </tr>
+                        </table>
+                        
+                        <!-- Total section -->
+                        <div style="text-align: right; margin-top: 40px;">
+                            <h4 style="display: inline;">Total TTC :  <t t-esc="doc.total_ttc" /> Dhs</h4>
+                            <h2 style="font-weight: bold;"></h2>
+                        </div>
+                    </div>
+                </t>
+
+                
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="config_settings_view" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.sgn</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="15"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="inside">
+                    <app data-string="SGN" string="SGN" name="sgn_settings">
+
+                        <block title="Configuration de la TPI" name="sgn_settings_container">
+                            <setting id="taux_tpi_residence_principale_setting" string="Taux TPI Residence principale" help="Ajouter le taux de TPI d'une residence principale.">
+                                <field name="taux_tpi_residence_principale"/>
+                            </setting>
+                            <setting id="coefficient_reevaluation_setting" string="Coefficient de Reevaluation" help="Ajouter le coefficient de réévaluation.">
+                                <field name="coefficient_reevaluation"/>
+                            </setting>
+                            <setting id="taux_tpi_residence_secondaire_setting" string="Taux TPI Residence secondaire" help="Ajouter le taux de TPI d'une residence secondaire.">
+                                <field name="taux_tpi_residence_secondaire"/>
+                            </setting>
+                            <setting  id="taux_forfaitaire_setting" string="Taux forfaitaire" help="Ajouter le pourcentage de taux forfaiatire.">
+                                <field name="taux_forfaitaire"/>
+                            </setting>
+                            <setting id="taux_tpi_terrain_setting" string="Taux TPI Terrain" help="Ajouter le taux de TPI d'un terrain.">
+                                <field name="taux_tpi_terrain"/>
+                            </setting>
+                            <setting id="taux_cotisation_minimale_setting" string="Cotisation minimale" help="Ajouter le taux de la cotisation minimale.">
+                                <field name="taux_cotisation_minimale"/>
+                            </setting>
+                            <setting id="taux_tpi_fond_commerce_setting" string="Taux TPI Fond de Commerce" help="Ajouter le taux de TPI d'un fond de commerce.">
+                                <field name="taux_tpi_fond_commerce"/>
+                            </setting>
+                        </block>
+                        <block title="Honoraires notariales" name="fraix_settings"> 
+                            <setting string="Prix de Vente Minimale" help="Siter le prix de vente minimale afin d'utiliser le montant des frais notariales fixes">
+                                <field name="prix_vente_minimal_pour_honoraires_fixes"/>
+                            </setting>       
+                            <setting string="Montant des Frais Notariales Fixes" help="Set the TVA rate.">
+                                <field name="minimum_fraix_notariale"/>
+                            </setting> 
+                        </block>
+                        <block title="Concervation Fonciere" name="tax_settings">
+                            <setting string="Taux Conservation Fonciere" help="Siter le taux de concervation fonciere.">
+                                <field name="taux_concervation"/>
+                            </setting>
+                        </block>
+                       
+                        <block title="TVA sur Les Honoraires" name="tax_settings">
+                            <setting string="Taux TVA" help="Siter le taux de TVA sur les honoraires notariales.">
+                                <field name="taux_tva"/>
+                            </setting>
+                        </block>
+                    </app>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="sgn_settings_action" model="ir.actions.act_window">
+            <field name="name">Settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'system_gestion_notariale'}</field>
+        </record>
+
+</odoo>

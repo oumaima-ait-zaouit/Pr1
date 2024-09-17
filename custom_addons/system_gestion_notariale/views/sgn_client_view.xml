@@ -1,113 +1,144 @@
 <?xml version="1.0"?>
 <odoo>
     <data>
-        <!-- <record id="hms_patient_tree" model="ir.ui.view">
-            <field name="name">hms.patient.tree</field>
-            <field name="model">hms.patient</field>
-            <field name="arch" type="xml">
-                <tree string="Patients">
-                    <field name="name" />
-                    <field name="phone" />
-                    <field name="address" />
-                    <field name="gender" />
-                    <field name="medical_record_number" />
-                    <field name="blood_type" />
-                </tree>
+        <record id="sgn_client_action" model="ir.actions.act_window">
+            <field name="name">Client</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">kanban,tree,form,calendar,activity</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Définir un nouveau client</p>
             </field>
         </record>
 
-        <record id="hms_patient_kanban" model="ir.ui.view">
-            <field name="name">hms.patient.kanban</field>
-            <field name="model">hms.patient</field>
+        <record id="res_partner_view_calendar" model="ir.ui.view">
+            <field name="name">res.partner.view.calendar.inherit.sgn</field>
+            <field name="model">res.partner</field>
             <field name="arch" type="xml">
-                <kanban>
-                    <h4>
-                        <field name="name" />
-                    </h4>
-                    <field name="gender" />
-                    <field name="phone" />
-                    <field name="blood_type" />
-                    <templates>
-                        <t t-name="kanban-box">
-                            <div class="oe_kanban_content">
-                                <div class="oe_kanban_primary">
-                                    <div class="oe_kanban_record">
-                                        <div class="oe_kanban_quick_create">
-                                            <h5>
-                                                <field name="name" />
-                                            </h5>
-                                        </div>
-                                        <div class="oe_kanban_gender">
-                                            <field name="gender" />
-                                        </div>
-                                        <div class="oe_kanban_phone">
-                                            <field name="phone" />
-                                        </div>
-                                        <div class="oe_kanban_blood_type">
-                                            <field name="blood_type" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </t>
-                    </templates>
-                </kanban>
+                <calendar string="" date_start="date_start" color="name" mode="month">
+                    <field name="name" />
+
+                </calendar>
             </field>
-        </record> -->
+        </record>
+
+        <record id="res_partner_view_activity" model="ir.ui.view">
+            <field name="name">res.partner.view.activity.inherit.sgn</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <activity string="">
+                    <templates>
+                        <div t-name="activity-box">
+                            <field name="name"/>
+                        </div>
+                    </templates>
+                </activity>
+            </field>
+        </record>
+
 
         <record id="res_partner_view_form" model="ir.ui.view">
             <field name="name">res.partner.view.form.inherit.sgn</field>
             <field name="model">res.partner</field>
-            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="inherit_id" ref="base.view_partner_form" />
             <field name="arch" type="xml">
-                
 
                 <xpath expr="//field[@name='vat']" position="after">
-                    <field name="nom_partenaire"/>
+                    <group colspan="4" style="margin-top: 20px">
+                        <field name="nationalite_ids"
+                            placeholder="e.g. Moroccan" />
+                    </group>
+                    <group colspan="4" invisible="is_company">
+                        <field name="date_naissance" />
+                        <field name="lieu_naissance1" />
+                        <field name="sexe" widget="radio" class="o_horizontal_radio" />
+                        <field name="combattant" />
+                        <field name="etat_familiale" />
+                    </group>
                 </xpath>
 
 
-                <!-- <xpath expr="//field[@name='nom_partenaire']" position="after">
-                    <modifiers>
-                        <modifier invisible="1" name="invisible" eval="etat_familiale != 'epoux'"/>
-                    </modifiers>
-                </xpath> -->
-               
-                <xpath expr="//field[@name='vat']" position="after">
-                    <field name="profession"/>
+                <xpath expr="//page[@name='contact_addresses']" position="attributes">
+                    <attribute name="string">Procuration</attribute>
                 </xpath>
 
-                <xpath expr="//field[@name='vat']" position="after">
-                    <field name="etat_familiale"/>
+
+                <xpath expr="//notebook" position="inside">
+                    <page string="Informations du partenaire"
+                        invisible="is_company or etat_familiale == '' or etat_familiale != 'epoux'">
+                        <div class="row">
+                            <div class="col" style="margin-right: 40px;">
+                                <group>
+                                    <field name="nom_partenaire" />
+                                    <field name="date_marriage" />
+                                    <field name="lieu_marriage1" />
+                                </group>
+                            </div>
+
+                            <div class="col">
+                                <group>
+                                    <field name="acte_marriage" />
+                                    <field name="marriage_musulman" />
+                                    <field name="acte_sous_article49"
+                                        invisible="marriage_musulman == False" />
+                                </group>
+                            </div>
+                        </div>
+                    </page>
                 </xpath>
 
-                
 
-                <xpath expr="//field[@name='vat']" position="after">
-                    <field name="date_naissance"/>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Piece Jointes">
+                        <field name="piece_jointe_ids">
+                            <tree editable='top' >
+                                <field name="type_pj" />
+                                <field name="fichier" />
+                                <field name="identifiant" />
+                                <field name="piece_identite_principale" />
+                                <field name="date_expiration" />
+                                <field name="statut" />
+                            </tree>
+                        </field>
+                    </page>
                 </xpath>
 
-                <xpath expr="//field[@name='vat']" position="after">
-                    <field name="lieu_naissance"/>
+                <!-- Hidden attributs -->
+                <xpath expr="//page[@name='sales_purchases']" position="attributes">
+                    <attribute name="invisible">1</attribute>
                 </xpath>
 
-                <xpath expr="//field[@name='vat']" position="after">
-                    <field name="nationnality_ids" widget="many2many_tags" placeholder="e.g. Moroccan"  />
+                <xpath expr="//page[@name='contact_addresses']" position="attributes">
+                    <group invisible="not is_company">
+                        <attribute name="invisible">1</attribute>
+                    </group>
+                </xpath>
+
+                <xpath expr="//field[@name='street2']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='parent_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='phone']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='website']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='title']" position="attributes">
+                    <attribute name="invisible">1</attribute>
                 </xpath>
 
                 <xpath expr="//field[@name='vat']" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
-            </field>
-        </record>
 
-        <record id="sgn_client_action" model="ir.actions.act_window">
-            <field name="name">Clients</field>
-            <field name="res_model">res.partner</field>
-            <field name="view_mode">kanban,tree,form</field>
-            <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">Définir un nouveau client</p>
             </field>
+
         </record>
     </data>
 </odoo>

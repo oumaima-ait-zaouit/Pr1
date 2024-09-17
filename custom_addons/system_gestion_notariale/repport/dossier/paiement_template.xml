@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_paiement_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Reçu de Paiement</h2>
+                        <table class="table table-sm"
+                               style="border-collapse: collapse; width: 100%; border: 1px solid black;">
+                            <thead>
+                                <tr>
+                                    <th style="border: 1px solid black; padding: 8px;">Service</th>
+                                    <th style="border: 1px solid black; padding: 8px;">Méthode de paiement</th>
+                                    <th style="border: 1px solid black; padding: 8px;">Date de Paiement</th>
+                                    <th style="border: 1px solid black; padding: 8px;">Montant (dh)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="doc.historique_paiement_ids" t-as="payment">
+                                    <tr>
+                                        <td style="border: 1px solid black; padding: 8px;">
+                                            <t t-esc="payment.name" />
+                                        </td>
+                                        <td style="border: 1px solid black; padding: 8px;">
+                                            <t t-esc="payment.methode_paiement" />
+                                        </td>
+                                        <td style="border: 1px solid black; padding: 8px;">
+                                            <t t-esc="payment.date_paiement" />
+                                        </td>
+                                        <td style="border: 1px solid black; padding: 8px;">
+                                            <t t-esc="payment.montant" />
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+    
+                        <div style="text-align: right; margin-top: 20px;">
+                            <h3 style="display: inline;">Total payé : <t t-esc="doc.total_paied" /> Dhs</h3>
+                        </div>
+                        
+                    </div>
+                </t>
+                
+            </t>
+        </t>
+    </template>
+</odoo>

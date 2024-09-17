@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sgn_piece_jointe_action" model="ir.actions.act_window">
+        <field name="name">Piece Jointe</field>
+        <field name="res_model">sgn.piece_jointe</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Ajouter une nouvelle piece jointe</p>
+        </field>
+    </record>
+
+    <record id="sgn_piece_jointe_tree" model="ir.ui.view">
+        <field name="name">sgn.piece_joine.tree</field>
+        <field name="model">sgn.piece_jointe</field>
+        <field name="arch" type="xml">
+            <tree >
+                <field name="identifiant" />
+                <field name="statut" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="sgn_piece_jointe_form" model="ir.ui.view">
+        <field name="name">sgn.piece_joine.form</field>
+        <field name="model">sgn.piece_jointe</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        
+                        <field name="identifiant" />
+                        <field name="fichier" />
+                        <field name="statut" />
+                        
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

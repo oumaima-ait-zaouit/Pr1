@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sgn_acte_action" model="ir.actions.act_window">
+        <field name="name">Actes</field>
+        <field name="res_model">sgn.acte</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new acte.
+            </p>
+        </field>
+    </record>
+
+    <record id="sgn_acte_tree" model="ir.ui.view">
+        <field name="name">sgn.acte.tree</field>
+        <field name="model">sgn.acte</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name" />
+                <field name="create_date" />
+                <field name="langue" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="sgn_acte_form" model="ir.ui.view">
+        <field name="name">sgn.acte.form</field>
+        <field name="model">sgn.acte</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <header>
+                    <!-- <button string="Preview Acte" name="action_name" type="object"
+                    class="oe_highlight"/> -->
+                </header>
+                <sheet>
+                    <div>
+                        <field name="name" readonly="1"
+                            style="width: 100%; font-size: 32px; font-weight: bold;" />
+                    </div>
+                    <group>
+                        <field name="create_date" />
+                        <field name="langue" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+</odoo>

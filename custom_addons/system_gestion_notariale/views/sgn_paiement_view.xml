@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <record id="sgn_paiement_action" model="ir.actions.act_window">
+            <field name="name">Paiement</field>
+            <field name="res_model">sgn.paiement</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Définir un nouveau client</p>
+            </field>
+        </record>
+
+        <record id="sgn_paiement_tree" model="ir.ui.view">
+            <field name="name">sgn.paiement.tree</field>
+            <field name="model">sgn.paiement</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    
+                    <field name="date_paiement" />
+                    <field name="name" />
+                    <field name="methode_paiement" />
+                    <field name="montant" />
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="sgn_paiement_form" model="ir.ui.view">
+            <field name="name">sgn.paiement.form</field>
+            <field name="model">sgn.paiement</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <div class="row">
+                            <div class="col">   
+                                <div class="row">
+                                    <div class="col">
+                                        <group>
+                                            <field name="montant" />
+                                            <field name="date_paiement" />
+                                            <field name="name" widget="selection" />
+                                        </group>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    </data>
+
+
+</odoo>

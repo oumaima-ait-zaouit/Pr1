@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Admin Rule -->
+        <record id="sgn_admin_rule_dossier" model="ir.rule">
+            <field name="name">Dossier - Admin Access</field>
+            <field name="model_id" ref="model_sgn_dossier"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_admin'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+
+        <record id="sgn_admin_rule_propriete" model="ir.rule">
+            <field name="name">Propriete - Admin Access</field>
+            <field name="model_id" ref="model_sgn_dossier"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_admin'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+
+        <record id="sgn_admin_rule_client" model="ir.rule">
+            <field name="name">Client - Admin Access</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_admin'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+
+        <record id="sgn_admin_rule_nationalite" model="ir.rule">
+            <field name="name">Nationalite - Admin Access</field>
+            <field name="model_id" ref="model_sgn_nationalite"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_admin'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+
+        <record id="sgn_admin_rule_categorie_propriete" model="ir.rule">
+            <field name="name">Categorie Propriete - Admin Access</field>
+            <field name="model_id" ref="model_sgn_categorie_propriete"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_admin'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+
+        <record id="sgn_admin_rule_piece_jointe" model="ir.rule">
+            <field name="name">Piece Jointe - Admin Access</field>
+            <field name="model_id" ref="model_sgn_piece_jointe"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_admin'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+
+        <record id="sgn_admin_rule_piece_jointe_client" model="ir.rule">
+            <field name="name">Piece Jointe Client - Admin Access</field>
+            <field name="model_id" ref="model_sgn_piece_jointe_client"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_admin'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+
+        <record id="sgn_admin_rule_piece_jointe_propriete" model="ir.rule">
+            <field name="name">Piece Jointe Propriete - Admin Access</field>
+            <field name="model_id" ref="model_sgn_piece_jointe_propriete"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_admin'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+
+        <record id="sgn_admin_rule_piece_jointe_dossier" model="ir.rule">
+            <field name="name">Piece Jointe Dossier - Admin Access</field>
+            <field name="model_id" ref="model_sgn_piece_jointe_dossier"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_admin'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+
+        <record id="sgn_admin_rule_phase" model="ir.rule">
+            <field name="name">Phase - Admin Access</field>
+            <field name="model_id" ref="model_sgn_phase"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_admin'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+
+        <record id="sgn_admin_rule_paiement" model="ir.rule">
+            <field name="name">Paiement - Admin Access</field>
+            <field name="model_id" ref="model_sgn_paiement"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_admin'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+
+        <record id="sgn_admin_rule_historique_phase" model="ir.rule">
+            <field name="name">Historique Phase - Admin Access</field>
+            <field name="model_id" ref="model_sgn_historique_phase"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_admin'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+
+        <record id="sgn_admin_rule_settings" model="ir.rule">
+            <field name="name">Settings - Admin Access</field>
+            <field name="model_id" ref="model_res_config_settings"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_admin'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+
+        <record id="sgn_admin_rule_board" model="ir.rule">
+            <field name="name">Board - Admin Access</field>
+            <field name="model_id" ref="model_board_board"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_admin'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+
+        <record id="sgn_admin_rule_custom_board" model="ir.rule">
+            <field name="name">Custom Board - Admin Access</field>
+            <field name="model_id" ref="model_sgn_custom_board"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_admin'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+
+        <record id="sgn_admin_rule_relation" model="ir.rule">
+            <field name="name">Relation - Admin Access</field>
+            <field name="model_id" ref="model_sgn_relation"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_admin'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+
+        <record id="sgn_admin_rule_ville" model="ir.rule">
+            <field name="name">Ville - Admin Access</field>
+            <field name="model_id" ref="model_sgn_ville"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_admin'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+
+        <record id="sgn_admin_rule_conservation" model="ir.rule">
+            <field name="name">Conservation - Admin Access</field>
+            <field name="model_id" ref="model_sgn_conservation"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_admin'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+    </data>
+</odoo>

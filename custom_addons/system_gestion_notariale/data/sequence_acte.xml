@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_acte_nombre" model="ir.sequence">
+            <field name="name">Nombre d'acte</field>
+            <field name="code">sgn.acte.nombre</field>
+            <field name="prefix">ACT</field>
+            <field name="padding">5</field>
+            <field name="implementation">standard</field>
+        </record>
+    </data>
+</odoo>

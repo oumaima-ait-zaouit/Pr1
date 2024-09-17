@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <!-- <record id="action_archive_my_custom_model" model="ir.actions.server">
+            <field name="name">Archive Selected</field>
+            <field name="model_id" ref="system_gestion_notariale.sgn_dossier"/>
+            <field name="state">code</field>
+            <field name="code">
+                action = records.write({'active': False})
+            </field>
+        </record> -->
+
+        <!-- <record id="action_archive_sgn_dossier" model="ir.actions.server">
+            <field name="name">Archive Selected Dossiers</field>
+            <field name="model_id" ref="model_sgn_dossier" />
+            <field name="binding_model_id" ref="system_gestion_notariale.model_sgn_acte" />
+            <field name="binding_view_types">list,form</field>
+            <field name="state">code</field>
+            <field name="code">action = records.action_archive()</field>
+        </record> -->
+
+        <record id="sgn_dossier_action" model="ir.actions.act_window">
+            <field name="name">Dossier</field>
+            <field name="res_model">sgn.dossier</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Définir un nouveau client</p>
+            </field>
+        </record>
+
+        <record id="sgn_dossier_tree" model="ir.ui.view">
+            <field name="name">sgn.dossier.tree</field>
+            <field name="model">sgn.dossier</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" decoration-bf="1" />
+                    <field name="statut" />
+                    <field name="service" />
+                    <field name="phase_id" />
+                    <field name="phase_statut" />
+                    <field name="propriete_id" />
+                    <field name="create_date" string="Date Création" readonly="1" />
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="sgn_dossier_graph" model="ir.ui.view">
+            <field name="name">sgn.dossier.graph</field>
+            <field name="model">sgn.dossier</field>
+            <field name="arch" type="xml">
+                <graph string="Dossier graph" type="pie">
+                    <field name="prix_vente" />
+                    <field name="statut" type="mesure" />
+                </graph>
+            </field>
+        </record>
+
+        <record id="sgn_dossier_form" model="ir.ui.view">
+            <field name="name">sgn.dossier.form</field>
+            <field name="model">sgn.dossier</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <!-- <button name="termine_phase_action" type="object" string="Terminer la
+                        tache" /> -->
+                        <!-- <button name="action_print_payment_list" type="object"
+                            string="Imprimer les paiements" class="btn-primary" /> -->
+                        <!-- <button name="action_print_acte" type="object" string="Imprimer l'acte"
+                            class="btn-primary" /> -->
+                        <button name="action_print_releve_affaire" type="object"
+                            string="Imprimer le releve d'affaire"
+                            class="btn-primary" />
+                        <field name="statut" widget="statusbar" options="{'clickable': True}" />
+                    </header>
+                    <sheet>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <div style="margin-buttom: 60px; margin-right: 60px;">
+                                        <!-- <field name="service" class="service_style" /> -->
+
+                                        <field name="name" readonly="1"
+                                            style="width: 100%; font-size: 32px; font-weight: bold;" />
+                                        <group>
+                                            <field name="service" />
+                                        </group>
+                                        <group>
+                                            <!-- <field name="date_creation" /> -->
+                                            <field name="create_date" string="Date de Création"
+                                                readonly="1" />
+
+                                            <field name="date_termination"
+                                                invisible="statut == '' or statut != 'terminer'" />
+
+                                            <field name="date_annulation"
+                                                invisible="statut == '' or statut != 'annule'" />
+                                        </group>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="row">
+                                        <group>
+                                            <field name="phase_id" />
+                                            <field name="phase_statut" readonly="1" />
+                                        </group>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col" style="margin-right: 60px;">
+                                    <group string="Information d'Acheteur">
+                                        <field name="acheteur_id" />
+                                        <field name="acheteur_nationalite_ids" />
+                                        <field name="acheteur_type_identifiant" />
+                                        <field name="acheteur_identifiant" />
+                                    </group>
+                                </div>
+                                <div class="col" style="margin-right: 60px;">
+                                    <group string="Information de Vendeur">
+                                        <field name="vendeur_id" />
+                                        <field name="vendeur_nationalite_ids" />
+                                        <field name="vendeur_type_identifiant" />
+                                        <field name="vendeur_identifiant" />
+
+                                    </group>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col" style="margin-right: 60px;">
+                                    <group string="Relation">
+                                        <field name="relation_acheteur_vendeur" />
+                                    </group>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col" style="margin-right: 60px;">
+                                    <group string="Information Propriete">
+                                        <field name="propriete_id" />
+                                        <field name="propriete_type" />
+                                        <field name="propriete_categorie" />
+                                        <field name="propriete_residence_statut"
+                                            invisible="propriete_type == '' or propriete_type != 'residence'" />
+                                        <field name="propriete_terrain_statut"
+                                            invisible="propriete_type == '' or propriete_type != 'terrain'" />
+                                        <field name="propriete_conservation" />
+                                    </group>
+                                </div>
+
+                                <div class="col" style="margin-right: 60px;">
+                                    <group string="Information Propriete">
+                                        <field name="prix_vente" />
+                                        <field name="paiement_by_notaire" />
+                                        <field name="depos_cdg"
+                                            invisible="paiement_by_notaire == '' or paiement_by_notaire != 'devant'" />
+                                        <field name="date_depos" invisible="not depos_cdg" />
+                                    </group>
+                                </div>
+                            </div>
+                        </div>
+
+                        <notebook>
+                            <page string="Description">
+                                <field name="description"
+                                    placeholder="Ajouter une description à votre dossier" />
+                            </page>
+
+                            <page string="Redaction d'Acte">
+                                <group>
+                                    <field name="langue_acte" />
+                                </group>
+
+                                <button name="action_print_minute" type="object"
+                                    string="Imprimer la minute"
+                                    class="btn-primary" style="margin-right: 20px;"/>
+
+                                <button name="action_print_acte" type="object"
+                                    string="Imprimer l'acte"
+                                    class="btn-primary" style="margin-left: 20px;"/>
+
+
+                            </page>
+
+                            <page string="Estimation des charges">
+                                <div class="row">
+                                    <div class="col" style="margin-right: 60px;">
+                                        <group string="TPI">
+                                            <field name="is_exempt" />
+                                            <field name="benefice" />
+                                            <field name="tpi_pourcentage" />
+                                            <field name="tpi_montant" />
+                                            <field name="cotisation_minimale" />
+                                        </group>
+                                    </div>
+                                    <div class="col" style="margin-right: 60px;">
+                                        <group string="Montant a payé">
+                                            <field name="montant_a_payer_tpi" />
+                                            <field name="notaire_responsabilite_tpi" />
+
+                                        </group>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col" style="margin-right: 60px;">
+                                        <group string="Concervation Fonciere">
+                                            <field name="pourcentage_concervation_fonciere" />
+                                        </group>
+                                    </div>
+                                    <div class="col" style="margin-right: 60px;">
+                                        <group string="Montant a payé">
+                                            <field name="montant_concervation_fonciere" />
+                                        </group>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col" style="margin-right: 60px;">
+                                        <group string="Registration">
+                                            <field name="pourcentage_registration" />
+                                        </group>
+                                    </div>
+                                    <div class="col" style="margin-right: 60px;">
+                                        <group string="Montant a payé">
+                                            <field name="montant_registration" />
+                                        </group>
+                                    </div>
+                                </div>
+                            </page>
+
+                            <page string="Honoraires et Frais du Dossier">
+                                <div class="row">
+                                    <div class="col" style="margin-right: 60px;">
+                                        <group string="Honoraires">
+                                            <field name="pourcentage_honoraire_notariale" />
+                                        </group>
+                                    </div>
+                                    <div class="col" style="margin-right: 60px;">
+                                        <group string="Montant a payé">
+                                            <field name="honoraires_notariale" />
+                                            <field name="fraix_dossier" />
+                                        </group>
+                                    </div>
+                                </div>
+                            </page>
+
+
+                            <!-- <page string="Details">
+                                <div class="row" string="TPI">
+
+                                </div>
+                                <div class="row">
+                                    <div class="col" style="margin-right: 60px;">
+                                        
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <group string="Conservation et Registration">
+
+
+                                                </group>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </page> -->
+
+                            <page string="Historique des phases">
+                                <field name="historique_phase_ids">
+                                    <tree editable="top">
+                                        <field name="phase_selection_ids" column_invisible="1" />
+                                        <field name="phase_id"
+                                            domain="[('name', 'in', phase_selection_ids)]" />
+                                        <field name="phase_is_paid" column_invisible="1" />
+                                        <field name="date_debut" />
+                                        <field name="montant" readonly="phase_is_paid == False" />
+                                        <field name="montant_valide"
+                                            readonly="phase_is_paid == False" />
+                                        <field name="is_paid" readonly="phase_is_paid == False" />
+                                        <field name="date_fin" />
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <page string="Piece Jointes">
+                                <field name="piece_jointe_ids">
+                                    <tree>
+                                        <field name="name" />
+                                        <field name="fichier" />
+                                        <field name="identifiant" />
+                                        <field name="statut" />
+                                    </tree>
+                                    <form>
+                                        <div class="row">
+                                            <div class="col" style="margin-right: 40px;">
+                                                <group>
+                                                    <field name="name" />
+                                                    <field name="fichier" />
+                                                    <field name="identifiant" />
+                                                </group>
+
+                                            </div>
+                                            <div class="col">
+                                                <group>
+                                                    <field name="statut" />
+                                                </group>
+                                            </div>
+
+                                        </div>
+
+                                    </form>
+                                </field>
+                            </page>
+
+                            <page string="Historique des paiements">
+                                <field name="historique_paiement_ids">
+                                    <tree editable="buttom">
+                                        <field name="name" />
+                                        <field name="methode_paiement" />
+                                        <field name="date_paiement" />
+                                        <field name="montant" />
+                                    </tree>
+                                </field>
+                                <!-- <div class="row" style="text-align: right;">
+
+                                    <div class="col" colspan="3">
+                                        <div class="col">
+                                            <label for="total_ht" string="Total Hors Taxes"
+                                                style="font-weight: bold;" />
+                                        </div>
+
+                                        <div class="col">
+                                            <label for="montant_tva" string="Montant TVA"
+                                                style="font-weight: bold;" />
+                                        </div>
+
+                                        <div class="col">
+                                            <label for="total_ttc" string="Total TTC"
+                                                style="font-weight: bold;" />
+                                        </div>
+
+                                        <div class="col">
+                                            <label for="total_paied" string="Total Payé"
+                                                style="font-weight: bold;" />
+                                        </div>
+
+                                        <div class="col">
+                                            <label for="total_unpaid" string="Reste"
+                                                style="font-weight: bold;" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="col">
+                                            <field name="total_ht" />
+                                        </div>
+                                        <div class="col">
+                                            <field name="montant_tva" />
+                                        </div>
+                                        <div class="col">
+                                            <field name="total_ttc" />
+                                        </div>
+                                        <div class="col">
+                                            <field name="total_paied" />
+                                        </div>
+                                        <div class="col">
+                                            <field name="total_unpaid" />
+                                        </div>
+                                    </div>
+                                </div> -->
+
+                                <div class="col"
+                                    style="display: flex; justify-content: flex-end; width: 100%;">
+                                    <table class="o_group" style="width: 25%;">
+                                        <tr>
+                                            <td style="font-weight: bold;">
+                                                <label for="total_ht" string="Total Hors Taxes" />
+                                            </td>
+                                            <td>
+                                                <field name="total_ht" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold;">
+                                                <label for="montant_tva"
+                                                    string="Taux TVA (Honoraires)" />
+                                            </td>
+                                            <td>
+                                                <field name="pourcentage_tva" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold;">
+                                                <label for="montant_tva"
+                                                    string="Montant TVA (Honoraires)" />
+                                            </td>
+                                            <td>
+                                                <field name="montant_tva" />
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td style="font-weight: bold;">
+                                                <label for="total_ttc" string="Total TTC" />
+                                            </td>
+                                            <td>
+                                                <field name="total_ttc" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold;">
+                                                <label for="total_paied" string="Total Payé" />
+                                            </td>
+                                            <td>
+                                                <field name="total_paied" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold;">
+                                                <label for="total_unpaid" string="Reste" />
+                                            </td>
+                                            <td>
+                                                <field name="total_unpaid" />
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                                <div class="col"
+                                    style="display: flex; margin-top: 40px; justify-content: flex-end; width: 100%;">
+                                    <button name="action_print_payment_list" type="object"
+                                        string="Imprimer les paiements" class="btn-primary" />
+                                </div>
+
+
+                            </page>
+                        </notebook>
+
+
+                        <!-- <group>
+
+
+                            <field name="service" />
+                            <field name="phase_ids" colspan="4">
+                                <tree>
+                                    <field name="name" />
+                                </tree>
+                            </field>
+                            <field name="phase_statut" />
+                            <field name="date_termination_phase" />
+                            <field name="acheteur_ids" />
+                            <field name="prix_vente" />
+
+
+                        </group> -->
+                    </sheet>
+
+                    <!-- Chatter integration -->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" />
+                        <field name="message_ids" />
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="sgn_dossier_search" model="ir.ui.view">
+            <field name="name">sgn.dossier.search</field>
+            <field name="model">sgn.dossier</field>
+            <field name="arch" type="xml">
+                <search>
+                    <!-- Add a filter for the 'type_propriete' field -->
+                    <filter name="filter_encours" string="En cours"
+                        domain="[('statut', '=', 'encoure')]" />
+                    <filter name="filter_terminer" string="Terminé"
+                        domain="[('statut', '=', 'terminer')]" />
+                    <filter name="filter_archive" string="Archivé"
+                        domain="[('statut', '=', 'archive')]" />
+                    <filter name="filter_annule" string="Annulé"
+                        domain="[('statut', '=', 'annule')]" />
+
+                    <field name="statut" string="Statut du dossier" />
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sgn_assistant_rule" model="ir.rule">
+            <field name="name">Dossier - Assistant Access</field>
+            <field name="model_id" ref="model_sgn_dossier"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_assistant'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>    
+            <field name="domain_force">[]</field>  
+        </record>
+
+        <record id="sgn_assistant_rule_propriete" model="ir.rule">
+            <field name="name">Propriete - Assistant Access</field>
+            <field name="model_id" ref="model_sgn_propriete"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_assistant'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>    
+            <field name="domain_force">[]</field>  
+        </record>
+
+        <record id="sgn_assistant_rule_client" model="ir.rule">
+            <field name="name">Client - Assistant Access</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_assistant'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">[]</field>      
+        </record>
+
+        <record id="sgn_assistant_rule_nationalite" model="ir.rule">
+            <field name="name">Nationalite - Assistant Access</field>
+            <field name="model_id" ref="model_sgn_nationalite"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_assistant'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">[]</field>      
+        </record>
+
+        <record id="sgn_assistant_rule_categorie_propriete" model="ir.rule">
+            <field name="name">Categorie propriete - Assistant Access</field>
+            <field name="model_id" ref="model_sgn_categorie_propriete"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_assistant'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+            <field name="domain_force">[]</field>      
+        </record>
+
+        <record id="sgn_assistant_rule_piece_jointe" model="ir.rule">
+            <field name="name">Piece Jointe - Assistant Access</field>
+            <field name="model_id" ref="model_sgn_piece_jointe"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_assistant'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+
+        <record id="sgn_assistant_rule_piece_jointe_client" model="ir.rule">
+            <field name="name">Piece Jointe Client - Assistant Access</field>
+            <field name="model_id" ref="model_sgn_piece_jointe_client"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_assistant'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+        
+        <record id="sgn_assistant_rule_piece_jointe_propriete" model="ir.rule">
+            <field name="name">Piece Jointe Propriete - Assistant Access</field>
+            <field name="model_id" ref="model_sgn_piece_jointe_propriete"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_assistant'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+
+        <record id="sgn_assistant_rule_piece_jointe_dossier" model="ir.rule">
+            <field name="name">Piece Jointe Dossier - Assistant Access</field>
+            <field name="model_id" ref="model_sgn_piece_jointe_dossier"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_assistant'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+
+        <record id="sgn_assistant_rule_phase" model="ir.rule">
+            <field name="name">Phase - Assistant Access</field>
+            <field name="model_id" ref="model_sgn_phase"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_assistant'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+
+        <record id="sgn_assistant_rule_paiement" model="ir.rule">
+            <field name="name">Paiement - Assistant Access</field>
+            <field name="model_id" ref="model_sgn_paiement"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_assistant'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+        
+        <record id="sgn_assistant_rule_historique_phase" model="ir.rule">
+            <field name="name">Historique Phase - Assistant Access</field>
+            <field name="model_id" ref="model_sgn_historique_phase"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_assistant'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+        
+        <record id="sgn_assistant_rule_settings" model="ir.rule">
+            <field name="name">Settings - Assistant Access</field>
+            <field name="model_id" ref="model_res_config_settings"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_assistant'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+
+        <record id="sgn_assistant_rule_board" model="ir.rule">
+            <field name="name">Board - Assistant Access</field>
+            <field name="model_id" ref="model_board_board"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_assistant'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+        
+        <record id="sgn_assistant_rule_custom_board" model="ir.rule">
+            <field name="name">Custom Board - Assistant Access</field>
+            <field name="model_id" ref="model_sgn_custom_board"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_assistant'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+        
+        <record id="sgn_assistant_rule_relation" model="ir.rule">
+            <field name="name">Relation - Assistant Access</field>
+            <field name="model_id" ref="model_sgn_relation"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_assistant'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+        
+        <record id="sgn_assistant_rule_ville" model="ir.rule">
+            <field name="name">Ville - Assistant Access</field>
+            <field name="model_id" ref="model_sgn_ville"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_assistant'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+        
+        <record id="sgn_assistant_rule_conservation" model="ir.rule">
+            <field name="name">Conservation - Assistant Access</field>
+            <field name="model_id" ref="model_sgn_conservation"/>
+            <field name="groups" eval="[(4, ref('system_gestion_notariale.sgn_group_assistant'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+            <field name="domain_force">[(1, '=', 1)]</field>      
+        </record>
+        
+    </data>
+</odoo>

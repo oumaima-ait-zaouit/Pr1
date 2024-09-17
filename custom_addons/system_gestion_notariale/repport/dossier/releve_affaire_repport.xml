@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="releve_affaire_list_action" model="ir.actions.report">
+        <field name="name">Relevé d'Affaire</field>
+        <field name="model">sgn.dossier</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">system_gestion_notariale.releve_affaire_template</field>
+        <field name="report_file">system_gestion_notariale.releve_affaire_template</field>
+        <field name="print_report_name">'%s' % object.name</field>
+        <field name="binding_model_id" ref="model_sgn_dossier"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+      <!-- Load CSS File -->
+      <template id="assets_backend" name="custom backend assets" >
+          <xpath expr="." position="inside">
+              <link rel="stylesheet" href="/system_gestion_notariale/static/src/css/sgn_dossier_styles.css"/>
+          </xpath>
+      </template>
+  </data>
+</odoo>

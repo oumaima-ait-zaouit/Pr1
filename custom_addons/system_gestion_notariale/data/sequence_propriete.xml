@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_propriete_nombre" model="ir.sequence">
+            <field name="name">Nombre propriete</field>
+            <field name="code">sgn.propriete.nombre</field>
+            <field name="prefix">PR</field>
+            <field name="padding">5</field>
+            <field name="implementation">standard</field>
+        </record>
+        
+    </data>
+</odoo>

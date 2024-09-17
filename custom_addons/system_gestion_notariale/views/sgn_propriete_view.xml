@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sgn_propriete_action" model="ir.actions.act_window">
+            <field name="name">Propriétés</field>
+            <field name="res_model">sgn.propriete</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Définir une nouvelle propriété</p>
+            </field>
+        </record>
+
+        <record id="sgn_propriete_tree" model="ir.ui.view">
+            <field name="name">sgn.propriete.tree</field>
+            <field name="model">sgn.propriete</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" readonly="1" />
+                    <!-- <field name="type_propriete" /> -->
+                    <field name="type_propriete" />
+                    <field name="categorie_propriete" />
+                    <field name="statut_residence" invisible="type_propriete == 'terrain'" />
+                    <field name="statut_terrain" invisible="type_propriete == 'residence'" />
+                    <field name="conservation_fonciere_id" />
+                    <field name="date_aquisition" />
+                    <!-- <field name="prix_aquisition_initial" />
+                    <field name="prix_revient_actualise" /> -->
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="sgn_propriete_graph" model="ir.ui.view">
+            <field name="name">sgn.propriete.graph</field>
+            <field name="model">sgn.propriete</field>
+            <field name="arch" type="xml">
+                <graph string="Dossier graph" type="bar">
+                    <field name="type_propriete" />
+                    <field name="categorie_propriete" type="mesure" />
+                </graph>
+            </field>
+        </record>
+
+
+        <record id="sgn_propriete_form" model="ir.ui.view">
+            <field name="name">sgn.propriete.form</field>
+            <field name="model">sgn.propriete</field>
+            <field name="arch" type="xml">
+                <form string="Propriete">
+                    <sheet>
+                        <div class="row" style="align-items: flex-start;">
+                            <div class="col">
+
+                                <field name="name" readonly="1"
+                                    style="width: 100%; font-size: 32px; font-weight: bold;" />
+
+                                <div class="row">
+                                    <div class="col" style="margin-right: 40px;">
+                                        <group>
+                                            <field name="type_propriete" />
+
+                                            <field name="statut_residence" widget="radio"
+                                                options="{'horizontal': true}"
+                                                invisible="type_propriete == '' or type_propriete != 'residence'" />
+                                            <!-- <field name="date_occupation_principale"
+                                                invisible="statut_residence == '' or statut_residence != 'principale'" /> -->
+                                            <field name="statut_terrain" widget="radio"
+                                                options="{'horizontal': true}"
+                                                invisible="type_propriete == '' or type_propriete != 'terrain'" />
+                                            <field name="categorie_propriete" />
+
+                                        </group>
+                                    </div>
+                                    <div class="col"
+                                        style="margin-right: 40px;">
+                                        <group>
+                                            <field name="surface" />
+                                            <field name="adresse" />
+                                            <field name="conservation_fonciere_id" />
+                                        </group>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <notebook>
+                            <page string="Description">
+                                <field name="description"
+                                    placeholder="Ajouter une description à votre propriété .." />
+                            </page>
+
+                            <page string="Details">
+                                <div class="row">
+                                    <div class="col" style="margin-right: 40px;">
+                                        <group>
+                                            <field name="date_aquisition" />
+                                            <field name="prix_aquisition_initial" />
+                                            <field name="depenses" />
+                                        </group>
+                                    </div>
+                                    <div class="col" style="margin-right: 40px;">
+                                        <group>
+                                            <field name="interets" />
+                                            <field name="mantants_interets"
+                                                invisible="interets == False" />
+                                            <field name="prix_revient_actualise" />
+
+                                        </group>
+                                    </div>
+                                </div>
+                            </page>
+
+                            <page string="Owners">
+                                <field name="owner_id">
+                                    <tree editable="bottom">
+                                        <field name="name" />
+                                        <field name="nationalite_ids" />
+                                        <field name="sexe" />
+                                        <field name="etat_familiale" />
+                                        <field name="phone" />
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <page string="Piece Jointes">
+                                <field name="piece_jointe_ids">
+                                    <tree>
+                                        <field name="name" />
+                                        <field name="fichier" />
+                                        <field name="identifiant" />
+                                        <field name="lieu_creation" />
+                                        <field name="date_creation" />
+                                        <field name="statut" />
+                                    </tree>
+                                    <form>
+                                        <div class="row">
+                                            <div class="col" style="margin-right: 40px;">
+                                                <group>
+                                                    <field name="name" />
+                                                    <field name="fichier" />
+                                                    <field name="identifiant" />
+                                                </group>
+
+                                            </div>
+                                            <div class="col">
+                                                <group>
+                                                    <field name="lieu_creation" />
+                                                    <field name="date_creation" />
+                                                    <field name="statut" />
+                                                </group>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </field>
+                            </page>
+
+                            
+                        </notebook>
+                    </sheet>
+                    
+                     <!-- Chatter integration -->
+                     <div class="oe_chatter">
+                        <field name="message_follower_ids" />
+                        <field name="message_ids" />
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="sgn_propriete_search" model="ir.ui.view">
+            <field name="name">sgn.propriete.search</field>
+            <field name="model">sgn.propriete</field>
+            <field name="arch" type="xml">
+                <search>
+                    <!-- Add a filter for the 'type_propriete' field -->
+                    <filter name="filter_residence" string="Residence"
+                        domain="[('type_propriete', '=', 'residence')]" />
+                    <filter name="filter_terrain" string="Terrain"
+                        domain="[('type_propriete', '=', 'terrain')]" />
+                    <filter name="filter_fond_commerce" string="Fond de Commerce"
+                        domain="[('type_propriete', '=', 'fond_de_commerce')]" />
+
+                    <filter name="filter_residence_principale" string="Principale"
+                        domain="[('type_propriete', '=', 'residence'), ('statut_residence', '=', 'principale')]" />
+                    <filter name="filter_residence_secondaire" string="Secondaire"
+                        domain="[('type_propriete', '=', 'residence'), ('statut_residence', '=', 'secondaire')]" />
+
+
+                    <filter name="filter_terrain_urbain" string="Urbain"
+                        domain="[('type_propriete', '=', 'terrain'), ('statut_terrain', '=', 'urbain')]" />
+                    <filter name="filter_terrain_rural" string="Rural"
+                        domain="[('type_propriete', '=', 'terrain'), ('statut_terrain', '=', 'rural')]" />
+
+                    <!-- Add the 'type_propriete' field to the search panel for keyword search -->
+                    <field name="type_propriete" string="Type de Propriete" />
+                    <field name="statut_residence" string="Classification Residence" />
+                    <field name="statut_terrain" string="Terrain Classification" />
+                    <field name="categorie_propriete" string="Categorie Proprriete" />
+                </search>
+            </field>
+        </record>
+    </data>
+
+
+</odoo>

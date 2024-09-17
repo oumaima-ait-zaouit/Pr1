@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sgn_custom_dashboard_kanban" model="ir.ui.view">
+        <field name="name">sgn.custom.dashboard.kanban</field>
+        <field name="model">sgn.custom.board</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_dashboard">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="o_kanban_dashboard"  >
+                            <div class="o_kanban_dashboard_item_label"  style="white-space: nowrap;">
+                                <strong>Total Clients</strong>
+                                <!-- <field name="dossier_count" /> -->
+                            </div>
+                            <div class="o_kanban_dashboard_item_value">
+                                
+                                <h1><field name="client_count" /></h1>
+                            </div>
+                        </div>
+                        <div class="o_kanban_dashboard" >
+                            <div class="o_kanban_dashboard_item_label"  style="white-space: nowrap;">
+                                <strong>Total Dossier</strong>
+                                <!-- <field name="dossier_count" /> -->
+                            </div>
+                            <div class="o_kanban_dashboard_item_value">
+                                    
+                                    <h1><field name="dossier_count"/></h1>
+                                </div>
+                        </div>
+
+
+                        <div class="o_kanban_dashboard" >
+                            <div class="o_kanban_dashboard_item_label" style="white-space: nowrap;">
+                                <strong>Total Propriétés</strong>
+                                <!-- <field name="dossier_count" /> -->
+                            </div>
+                            <div class="o_kanban_dashboard_item_value">
+                                <h1><field name="propriete_count"/></h1>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="sgn_dashboard_form_list_action" model="ir.actions.act_window">
+        <field name="name">Tableau de Bord</field>
+        <field name="res_model">sgn.custom.board</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- <menuitem
+        id="dash_menu"
+        name="Dshboard records"
+        action='sgn_dashboard_form_list_action'
+        parent="sgn_menu"
+        sequence="10"/> -->
+
+    <!-- 
+    <record id="sgn_dashboard_action" model="ir.actions.act_window">
+        <field name="name">Tableau de Bord</field>
+        <field name="res_model">sgn.custom.board</field>
+        <field name="view_mode">form</field>
+        <field name="usage">menu</field>
+        <field name="view_id" ref="sgn_dashboard_form" />
+    </record> -->
+
+</odoo>

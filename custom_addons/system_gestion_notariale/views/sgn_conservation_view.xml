@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="sgn_conservation_action" model="ir.actions.act_window">
+            <field name="name">conservation</field>
+            <field name="res_model">sgn.conservation</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Définir une nouvelle conservation</p>
+            </field>
+        </record>
+
+        <record id="sgn_conservation_tree" model="ir.ui.view">
+            <field name="name">sgn.conservation.tree</field>
+            <field name="model">sgn.conservation</field>
+            <field name="arch" type="xml">
+                <tree string="conservations">
+                    <field name="name" />
+                    <field name="adresse" />
+                    <field name="ville" />
+                    <field name="telephone" />
+                    <field name="email" />
+                    <field name="responsable" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="sgn_conservation_form" model="ir.ui.view">
+            <field name="name">sng.conservation.form</field>
+            <field name="model">sgn.conservation</field>
+            <field name="arch" type="xml">
+                <form string="Conservations">
+                    <sheet>
+                        <div class="row" style="align-items: flex-start;">
+                            <group>
+                                <field name="name" />
+                                <field name="adresse" />
+                                <field name="ville" />
+                                <field name="telephone" />
+                                <field name="email" />
+                                <field name="responsable" />
+                            </group>
+                        </div>
+                    </sheet>
+
+                    <!-- Chatter integration -->
+                    <!-- <div class="oe_chatter">
+                        <field name="message_follower_ids" />
+                        <field name="message_ids" />
+                    </div> -->
+
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

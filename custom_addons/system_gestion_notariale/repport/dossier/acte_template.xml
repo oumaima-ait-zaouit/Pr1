@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <template id="report_acte_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <h3>Acte de <t t-esc="o.service" /></h3>
+                            <h5>Numéro de réference : <t t-esc="o.name" /></h5>
+                            <p> Le présent contrat est signé et prend effet à compter du <t
+                                    t-esc="o.create_date"></t>
+                            </p>
+
+                            <p>entre les soussignés : </p>
+                            <p><t t-esc="o.vendeur_id.titre" /> <strong><t t-esc="o.vendeur_id.name" /> </strong>
+                                <br />de nationalité <t t-esc="o.vendeur_id.nationalite_ids.name" />, né(e) le <t t-esc="o.vendeur_id.date_naissance" /> à <t t-esc="o.vendeur_id.lieu_naissance1.name" />
+                                <br />titulaire de la 
+                                <t t-foreach="o.vendeur_id.piece_jointe_ids" t-as="pjc">
+                                    <t t-if="pjc.piece_identite_principale"> 
+                                        <t t-esc="pjc.type_pj" />, 
+                                        N° : <t t-esc="pjc.identifiant" />, 
+                                        valable jusqu'au <t t-esc="pjc.date_expiration" />
+                                    </t>
+                                </t>
+                                <br />profession <t t-esc="o.vendeur_id.function" />
+                                <strong><br />Ci-après nommé « Le Vendeur ».</strong> 
+                            </p>
+                            <p>ET</p>
+                            <p><t t-esc="o.acheteur_id.titre" />  <strong><t t-esc="o.acheteur_id.name" /> </strong>
+                                <br />de nationalité <t t-esc="o.acheteur_id.nationalite_ids.name" /> né(e) le <t t-esc="o.acheteur_id.date_naissance" /> à <t t-esc="o.acheteur_id.lieu_naissance1.name" />
+                                <br />titulaire de la 
+                                <t t-foreach="o.acheteur_id.piece_jointe_ids" t-as="pjt">
+                                    <t t-if="pjt.piece_identite_principale"> 
+                                        <t t-esc="pjt.type_pj" />, 
+                                        N° : <t t-esc="pjt.identifiant" />, 
+                                        valable jusqu'au <t t-esc="pjt.date_expiration" />
+                                    </t>
+                                </t>
+                                <br />profession <t t-esc="o.acheteur_id.function" />
+                                <strong><br />Ci-après nommé « L'Acquéreur ».</strong> 
+
+                                <t
+                                    t-if="o.acheteur_id.etat_familiale == 'epoux'"> marié(e) selon
+                                la loi <t t-if="o.acheteur_id.marriage_musulman">musulman</t>
+                                    <t
+                                        t-else="">civil</t> à <t
+                                        t-esc="o.acheteur_id.nom_partenaire" /> a <t
+                                        t-esc="o.acheteur_id.lieu_marriage1.name" /> le <t
+                                        t-esc="o.acheteur_id.date_marriage" />
+                                    <t
+                                        t-if="o.acheteur_id.acte_sous_article49"></t>
+                                    <t t-else="">
+                                non</t> soumis à l'article 49 sur le droit de la famille selon sa
+                                déclaration. </t>
+                                <t t-else=""></t>
+                            </p>
+
+                            <p>--------------------------</p>
+
+                            <p>
+                                <strong> Lequel comparant requiert le Notaire soussigné de donner
+                                    l'authenticité au présent acte ci-après arrêté entre eux en la
+                                    langue <t t-esc="o.langue_acte" /> conformément à l'article 42
+                                    de la loi relative à l'organisation de la profession de Notariat
+                                    sans le concours ni la participation dudit Notaire qui n'est que
+                                    le rédacteur des présentes. </strong>
+                            </p>
+
+                            <p>--------------------------</p>
+                            <h5>DÉSIGNATION</h5>
+                            <p> La totalité de la propriété catégorisée sous le type <t t-esc="o.propriete_id.type_propriete" /> 
+                                dite <t t-esc="o.propriete_id.categorie_propriete.name" />. 
+                                Objet du titre foncier N° <t t-esc="o.propriete_id.statut_residence" />, 
+                                sis à <t t-esc="o.propriete_id.adresse" />, 
+                                Commune <t t-esc="o.propriete_id.conservation_fonciere_id.name" />, 
+                                d'une Superficie de <t t-esc="o.propriete_id.surface" /> m2. 
+                                <br />Tel que cet immeuble se poursuit et comporte, avec toutes ses aisances,
+                                dépendances et immeubles par destination, servitudes et
+                                mitoyennetés, tous droits et facultés quelconques, sans aucune
+                                exception ni réserve. <br />
+                                <strong>
+                                « L'Acquéreur » déclare bien connaître le bien sous-désigné pour
+                                l'avoir vu et visité.
+                                </strong>
+                            </p>
+                            <p>--------------------------</p>
+                            <h5>ORIGINE DE PROPRIETE</h5>
+                            <p> « Le Vendeur », ès qualités, déclare qu'il est propriétaire de la
+                                propriété présentement declarée en vertu des énonciations portées
+                                sur ledit titre foncier auxquels les parties entendent expressément
+                                se référer, Cependant, pour les besoins du service de
+                                l'Enregistrement, « Le Vendeur » ès qualités, déclare qu'il est
+                                propriétaire de la propriété présentement vendue. <br />
+                                <t
+                                    t-foreach="o.propriete_id.piece_jointe_ids" t-as="pj">
+                                    <t t-if="pj.name == 'titre'"> pour l'avoir acquis suivant :
+                                titre N° <t t-esc="pj.identifiant" />, enregistré à <t
+                                            t-esc="pj.lieu_creation" /> le <t
+                                            t-esc="pj.date_creation" />. </t>
+                                </t>
+                            </p>
+                            <p>___________________________________________________________________________________________</p>
+                            <h5>PROPRIETE JOUISSANCE</h5>
+                            <p>
+                                « L'Acquéreur », sera propriétaire du bien présentement vendue à
+                                compter du jour de l'inscription des présentes sur les livres
+                                fonciers conformément aux articles 66 et 67 du Dahir du 12 Août 1913
+                                relatif à l'immatriculation des immeubles, tel qu'il a été modifié
+                                et
+                                complété par la loi numéro 14-07 promulgué le 22 novembre 2011, et
+                                il en aura la jouissance par la prise de possession réelle,
+                                libre de toute occupation ou location, le tout à compter de ce jour.
+                            </p>
+                            <p>--------------------------</p>
+                            <h5>CHARGES ET CONDITIONS</h5>
+                            <p> 
+                                La présente <t t-esc="o.service" /> a lieu sous les conditions
+                                ordinaires de fait et de droit les plus étendues en pareille matière
+                                et notamment sous celles suivantes que « L'Acquéreur » s'oblige à
+                                accomplir et à exécuter à savoir : 
+                            </p>
+                            <p> 
+                                1 - De prendre la propriété
+                                présentement <t t-if="o.service == 'vente'">vendue</t>
+                                <t t-else="">donnee</t> 
+                                dans l'état où ils se trouvent actuellement sans pouvoir
+                                prétendre à aucune indemnité ni diminution du prix ci-après fixé
+                                pour quelque cause que ce soit, notamment pour mauvais état du bien. 
+                            </p>
+                            <p>
+                                2 - De souffrir des servitudes passives et de jouir de celles
+                                actives, le tout s'il en existe, tels que ces droits et charges se
+                                trouvent énoncés au dossier du titre précité, auquel les parties
+                                entendent se référer.
+                            </p>
+
+                            <p>
+                                A cet égard, « Le Vendeur » ès qualité déclarent qu'il n'existe à sa
+                                connaissance aucune servitude occulte sur la propriété présentement
+                                vendue et qu'il n'en a été créé aucune en dehors des servitudes
+                                pouvant résulter du plan de l'urbanisme de la province concernée, le
+                                tout bien connu de « L'Acquéreur ».
+                            </p>
+
+                            <p>
+                                3 - D'acquitter à compter de la date d'Attribution, toutes les
+                                impositions, contributions et charges de toute nature relatives à la
+                                propriété présentement vendue et de faire son affaire personnelle
+                                pour la continuation des abonnements d'eau et d'électricité ou
+                                d'autres équipements.
+                            </p>
+
+                            <p> Étant bien précisé que toutes impôts et charges quelconques sont à
+                                la charge de « L'Acquéreur » à compter de la date de l'attribution
+                                du lot qui lui a été faite par <t t-esc="o.vendeur_id.titre" /> <t
+                                    t-esc="o.vendeur_id.name" />. </p>
+
+                            <p>
+                                Enfin de payer tous les frais et droits, des présentes et de leurs
+                                suites.
+                            </p>
+                            <p>--------------------------</p>
+                            <h5>PRIX</h5>
+                            <p>
+                                La présente vente est consentie et acceptée entre les parties
+                                moyennant le prix principal et global de <t t-esc="o.prix_vente" /> Dhs 
+                                payé par <t t-esc="o.acheteur_id.titre" /> <t t-esc="o.acheteur_id.name" />
+                                directement au vendeur
+                                <t t-if="o.paiement_by_notaire == 'devant'">en présence et sous</t>
+                                <t t-else="">hors la vue et</t> 
+                                la comptabilité du Notaire soussigné.
+                            </p>
+                            <P>
+                                Lequel prix principale « L'Acquéreur » a payé comptant dés avant ce 
+                                jour
+                                <t t-if="o.paiement_by_notaire == 'devant'">en présence</t> 
+                                <t t-else="">hors la vue</t> 
+                                du Notaire soussigné au vendeur es qualité qui le reconnaît et 
+                                lui en consent bonne et valable quittance définitive et sans réserve.
+                            </P>
+                            <p>--------------------------</p>
+                            <h5>DECHARGE DE RESPONSABILITÉ</h5>
+                            <P>
+                                Les parties et plus spécialement, « L'Acquéreur », déclarent expressément tenir 
+                                quitte et décharger le Notaire soussigné de toutes responsabilités et de toutes 
+                                contestations pouvant surgir suite à la remise du prix de vente comptant directement 
+                                entre les mains du « Vendeur ».
+                            </P>
+                            <p>--------------------------</p>
+                            <h5>URBANISME</h5>
+                            <P>
+                                Les parties et plus spécialement, « L'Acquéreur », déclarent expressément tenir 
+                                quitte et décharger le Notaire soussigné de toutes responsabilités et de toutes 
+                                contestations pouvant surgir suite à la remise du prix de vente comptant directement 
+                                entre les mains du « Vendeur ».
+                            </P>
+                            <p>--------------------------</p>
+                            <h5>LECTURE DE LA LOI</h5>
+                            <p>
+                                Avant de clore et conformément à la Loi, Maître <t t-esc="o.acheteur_id.name" /> 
+                                Notaire soussigné, a donné lecture des présentes aux parties qui le reconnaissent des dispositions 
+                                des articles 21 (II) et 25 de la loi de finance du 30 Décembre 2004, ainsi que 
+                                l'article 8 du livre des procédures fiscales.
+                            </p>
+                            <p>
+                                Les parties ont affirmé expressément que le présent acte exprime l'intégralité du prix convenu, 
+                                et le Notaire soussigné affirme en outre, qu'à sa connaissance le présent acte n'est modifié ou 
+                                contredit par aucune contre-lettre contenant une augmentation du prix. 
+                            </p>
+                            <t t-if="o.notaire_responsabilite_tpi">
+                                <p>
+                                    Le Notaire soussigné déclare avoir pris en charge la déclaration relative à 
+                                    l'impôt sur le revenu des profits immobiliers conformément à la loi n°38-07 
+                                    portant promulgation de la loi de finance de l'année 2008.
+                                </p>
+                            
+                            </t> 
+                                
+                            <t t-else="">
+                                <p>
+                                    « Le Vendeur » ès qualité déclare avoir été informé par le Notaire soussigné 
+                                    de l'obligation de souscrire dans le délai de 30 jours à compter de ce jour 
+                                    la déclaration relative à l'impôt sur le revenu des profits immobiliers de la 
+                                    loi n°38-07 portant promulgation de la loi de finance de l'année 2008.
+                                </p>
+                            </t> 
+
+                            <p>--------------------------</p>
+                            <h5>DONT - ACTE</h5>
+                            <P> Fait et passé à Marrakech, En l'étude du Notaire soussigné,
+                                Identifiant fiscal <strong>1532564890177</strong>. L'AN 2024, Et
+                                lecture faite, « Le Vendeur» et « l'Acquéreur» comparants, sus
+                                nommés ont signé avec Maître <strong>Khalid El Mourabit</strong>,
+                                Notaire à <strong>Marrakech</strong>, après que ledit vendeur ait
+                                dispensé expressément ce dernier de se faire assister d'un
+                                interprète traducteur assermenté, déclarant avoir parfaitement
+                                compris tous les termes du présent acte sur les explications et
+                                traductions à eux faites par ledit Notaire. </P>
+
+                            <table class="table table-bordered" style=" margin-top: 20px;">
+                                <thead>
+                                    <tr>
+                                        <th style="padding: 20px; font-size: 16px;">Notaire</th>
+                                        <th style="padding: 20px; font-size: 16px;">Signature</th>
+                                        <th style="padding: 20px; font-size: 16px;">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="padding: 40px; font-size: 16px;">Khalid El Mourabit</td>
+                                        <td style="padding: 40px; font-size: 14px;"></td>
+                                        <td style="padding: 40px; font-size: 14px;"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                    </t>
+
+                </t>
+            </t>
+        </template>
+
+    </data>
+
+</odoo>

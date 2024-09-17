@@ -1,0 +1,27 @@
+.service_style {
+    text-align: center; /* Center the text horizontally */
+    font-weight: bold;  /* Make the text bold */
+    background-color: #dddbe8; /* Background color */
+    border: 1px solid #71639e; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    padding: 2px; /* Padding */
+}
+.phase_statut_style {
+    background-color: #ccd1ff; /* White background */
+    border: 1px solid #2838c7; /* Light border color */
+    border-radius: 5px;
+    color: #b94b4b !important; 
+    padding: 2px; 
+}
+.phase_style {
+    background-color: #baf3a9; /* White background */
+    border: 1px solid #299408; /* Light border color */
+    border-radius: 5px;
+    color: #3bb974 !important; 
+    padding: 2px; 
+}
+
+.o_horizontal_radio .o_radio_item {
+    display: inline-block;
+    margin-right: 10px;
+}

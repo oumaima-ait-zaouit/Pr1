@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-hms.access_hms_patient,access_hms_patient,hms.model_hms_patient,base.group_user,1,1,1,1
-hms.access_hms_doctor,access_hms_doctor,hms.model_hms_doctor,base.group_user,1,1,1,1
